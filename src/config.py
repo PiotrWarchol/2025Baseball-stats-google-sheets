@@ -10,4 +10,4 @@ SHEET_NAME = "Sheet1"
 MLB_STATS_API = "https://statsapi.mlb.com/api/v1/teams/stats?season=2024"
 
 # Credentials file (ensure this matches your filename)
-CREDENTIALS_FILE = "credentials.json"
+CREDENTIALS_FILE = r"C:\Users\piotr\Downloads\sincere-lexicon-329704-e385292fc1d9.json"

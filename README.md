@@ -1,74 +1,58 @@
-# Live MLB Stats in Google Sheets
+# Baseball Stats Google Sheets Updater
 
 ## Overview
-This project automates the process of fetching live MLB baseball statistics and updating them in a Google Sheet. It uses Python along with the Google Sheets API and the MLB Stats API to keep the sheet updated with the latest stats from the ongoing season.
+This project fetches baseball player statistics from Baseball Savant and updates a Google Sheet with the latest data. The script ensures the sheet is cleared before each update, sorts the data by a random column, and adds a ranking column for dynamic analysis.
 
 ## Features
-- Automatically retrieves real-time MLB team statistics.
-- Updates a specified Google Sheet with the latest data.
-- Uses the Google Sheets API for seamless integration.
-- Can be scheduled to run periodically using a cron job or cloud function.
+- **Automated Data Retrieval**: Scrapes the latest baseball stats from Baseball Savant.
+- **Google Sheets Integration**: Updates a specified Google Sheet with fresh data.
+- **Sheet Reset**: Clears previous data before inserting new statistics.
+- **Random Sorting**: Data is sorted by a randomly selected column each time the script runs.
+- **Ranking System**: Adds a "Rank" column to order players dynamically.
 
-## Technologies Used
-- Python
-- Google Sheets API
-- MLB Stats API
-- gspread (Google Sheets integration)
-- requests (Fetching live data)
-- oauth2client (Google authentication)
+## Requirements
+- Python 3.12+
+- Required libraries:
+  - `requests`
+  - `beautifulsoup4`
+  - `json`
+  - `gspread`
+  - `oauth2client`
+  - `pandas`
 
-## Setup Instructions
+## Setup
+1. **Google Sheets API Authentication**
+   - Obtain a Google Service Account JSON key.
+   - Enable the Google Sheets API and add the service account email to your Google Sheet with edit permissions.
+   - Update the script with your key file path.
 
-### 1. Clone the Repository
-```sh
-git clone https://github.com/PiotrWarchol/baseball-stats-google-sheets.git
-cd baseball-stats-google-sheets
+2. **Install Dependencies**
+   ```bash
+   pip install requests beautifulsoup4 gspread oauth2client pandas
+   ```
+
+3. **Update Configuration**
+   - Replace `Baseball Stats` in the script with the actual name of your Google Sheet.
+   - Ensure the correct file path to your Google Service Account key JSON.
+
+## Running the Script
+Run the script with:
+```bash
+python update_sheets.py
 ```
 
-### 2. Set Up a Google Cloud Project
-1. Go to the [Google Cloud Console](https://console.cloud.google.com/).
-2. Create a new project.
-3. Enable the **Google Sheets API** and **Google Drive API**.
-4. Create a Service Account and generate a JSON key file.
-5. Share your Google Sheet with the service account email.
-
-### 3. Install Dependencies
-```sh
-pip install -r requirements.txt
-```
-
-### 4. Configure Authentication
-- Place your `credentials.json` file in the project root.
-- Update `config.py` with the name of your Google Sheet.
-
-### 5. Run the Script
-```sh
-python src/update_sheets.py
-```
-
-## Example Output
-The Google Sheet will be updated with the following format:
-```
-| Team          | Wins | Losses | Runs Scored |
-|--------------|------|--------|-------------|
-| Yankees      | 45   | 30     | 380         |
-| Dodgers      | 50   | 25     | 420         |
-| Red Sox      | 40   | 35     | 360         |
-```
-
-## Automating Updates
-To automate the script, you can use:
-- **Cron Jobs** (Linux/macOS)
-- **Windows Task Scheduler**
-- **AWS Lambda** (for cloud execution)
+## Expected Output
+- The script fetches baseball stats and converts them into a structured table.
+- Data is sorted by a randomly chosen column.
+- A "Rank" column is added.
+- The Google Sheet is cleared and updated with new headers and data.
 
 ## Future Enhancements
-- Support for player-specific stats.
-- Adding game schedules and scores.
-- Visualization of data using Matplotlib or Google Sheets charts.
+- Allow user selection of the sorting column.
+- Implement scheduled updates using a cron job or a cloud function.
 
 ## License
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the MIT License.
 
 ## Author
 Piotr Warchol
